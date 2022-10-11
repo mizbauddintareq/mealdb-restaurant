@@ -127,4 +127,4 @@ const displayDetails = (details) => {
   mBody.appendChild(div);
 };
 
-loadFoodData("b");
+loadFoodData("");

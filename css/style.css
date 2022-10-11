@@ -1,3 +1,16 @@
+header {
+  background-image: url(../image/Abstract\ Paper.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 70vh;
+  position: relative;
+}
+.search-box {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+}
 #wifi-loader {
   --background: #62abff;
   --front-color: #0000ff;
@@ -193,5 +206,20 @@
 
   100% {
     clip-path: inset(0 0 0 100%);
+  }
+}
+
+@media only screen and (max-width: 688px) {
+  header {
+    height: 50vh;
+  }
+  .search-box {
+    left: 10%;
+  }
+}
+
+@media only screen and (min-width: 689px) and (max-width: 991px) {
+  .search-box {
+    left: 20%;
   }
 }
