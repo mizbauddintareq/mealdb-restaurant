@@ -1,13 +1,22 @@
 const getSearchText = () => {
   const getSearchField = document.getElementById("search-field");
   const searchText = getSearchField.value;
+
+  if (searchText === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Search box empty",
+    });
+    return;
+  }
+
+  document.getElementById("wifi-loader").classList.remove("d-none");
   loadFoodData(searchText);
   getSearchField.value = "";
 };
 
 const loadFoodData = async (searchText) => {
-  const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchText}`;
-
+  const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -24,7 +33,7 @@ const displayData = (meals) => {
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-         <div class="card h-100 shadow p-3 mb-5 bg-body rounded border-0">
+         <div class="card h-100 shadow-lg p-1 mb-5 bg-body rounded border-0">
               <img src="${meal.strMealThumb}" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title">${meal.strMeal}</h5>
@@ -80,6 +89,8 @@ const displayData = (meals) => {
         
         `;
     foodContainer.appendChild(div);
+
+    document.getElementById("wifi-loader").classList.add("d-none");
   });
 };
 
