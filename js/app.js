@@ -20,6 +20,15 @@ const loadFoodData = async (searchText) => {
   try {
     const res = await fetch(url);
     const data = await res.json();
+    if (data.meals == null) {
+      Swal.fire({
+        icon: "error",
+        title: "No data found",
+      });
+      document.getElementById("wifi-loader").classList.add("d-none");
+      document.getElementById("food-container").innerHTML = "";
+      return;
+    }
     displayData(data.meals);
   } catch (error) {
     // console.log(error);
